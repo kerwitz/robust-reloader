@@ -2,6 +2,7 @@
 
 An experimental chrome extension that lets you reload the current tab from the omnibar using simple commands.
 
+## Usage
 
 1. Hit [ctrl] + [l] or [cmd] + [l] to highlight the contents of the omnibar.
 2. Type "r" into the omnibar and hit [tab] to activate the extension.
@@ -18,4 +19,3 @@ An experimental chrome extension that lets you reload the current tab from the o
     - "about"
 
 Click on the rr-icon on the omnibar to reveal a progress bar and see when the page is going to be reloaded again.
-
