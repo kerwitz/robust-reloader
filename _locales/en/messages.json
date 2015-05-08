@@ -1,0 +1,74 @@
+{
+    "extension_name": {
+        "message":      "Robust reload",
+        "description":  "The name of the extension (robust reload)."
+    },
+    "extension_description": {
+        "message":      "A chrome reload extension that accepts multiple intervals without adding any icons to the UI, it all works through the omnibox. Just hit \"r\" + tab.",
+        "description":  "The description of the extension as seen on the extension panel."
+    },
+    "suggestion": {
+        "message":      "Enter a coma separated list of intervals (<match>\"20s,1m,1m20s,1h,10\"</match>), <match>\"about\"</match> or <match>\"config\"</match> .",
+        "description":  "The suggestion shown under the omnibar when the user starts typing a command. Use <match> tag to highlight strings."
+    },
+    "command_stop": {
+        "message":      "stop",
+        "description":  "The stop command."
+    },
+    "command_pause": {
+        "message":      "pause",
+        "description":  "The pause command."
+    },
+    "command_start": {
+        "message":      "start",
+        "description":  "The start or unpause command."
+    },
+    "command_config": {
+        "message":      "config",
+        "description":  "The config command."
+    },
+    "command_about": {
+        "message":      "about",
+        "description":  "The about command."
+    },
+    "notification_stopped": {
+        "message":      "Reloading was stopped.",
+        "description":  "The notification that appears after a \"stop\" command."
+    },
+    "notification_paused": {
+        "message":      "Reloading was paused.",
+        "description":  "The notification that appears after a \"pause\" command."
+    },
+    "notification_started_again": {
+        "message":      "Reloading was started again.",
+        "description":  "The notification that appears after a \"start\" command."
+    },
+    "notification_started": {
+        "message":      "Reloading was started.",
+        "description":  "The notification that appears after new intervals have been entered."
+    },
+    "options_enable_notifications": {
+        "message":      "Enable notifications",
+        "description":  "The description of the option field \"enable_notifications\"."
+    },
+    "options_notification_timeout": {
+        "message":      "Timeout for notifications (in seconds)",
+        "description":  "The description of the option field \"notification_timeout\"."
+    },
+    "options_show_page_action": {
+        "message":      "Show icon in the omnibar when the plugin is active",
+        "description":  "The description of the option field \"show_page_action\"."
+    },
+    "options_show_page_action_countdown": {
+        "message":      "Show countdown in the ommibar icon 10 seconds before a reload",
+        "description":  "The description of the option field \"show_page_action_countdown\"."
+    },
+    "page_action_title_interval": {
+        "message":      "Current interval is {interval} seconds.",
+        "description":  "The title of the page action if the countdown is disabled. Use {interval}."
+    },
+    "page_action_title_interval_countdown": {
+        "message":      "Current interval: {interval} seconds, next reload in: {leftover} seconds.",
+        "description":  "The title of the page action if the countdown is enabled. Use {interval} and {leftover}."
+    }
+}
