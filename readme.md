@@ -1,3 +1,4 @@
+![robust-reloader](rr_128.png)
 # robust-reloader
 
 An experimental chrome extension that lets you reload the current tab from the omnibar using simple commands.
