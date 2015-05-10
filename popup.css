@@ -9,6 +9,10 @@ body {
     box-sizing: border-box;
 }
 
+*:focus {
+    outline: none;
+}
+
 .info {
     display: block;
     margin: 10px;
@@ -30,14 +34,19 @@ body {
 }
 
 
-input { width: 100%; }
+input {
+    width: 100%;
+    line-height: 20px;
+    padding: 0 5px;
+}
 
 button {
     background-image: linear-gradient(to bottom, #fff, #dedede);
     border: 1px solid #BABABA;
-    margin: 1px;
     float: left;
     cursor: pointer;
+    width: 25%;
+    line-height: 25px;
 }
 
 .interval-list {
@@ -53,9 +62,13 @@ button {
 .commands {
     padding: 10px;
     border-top: 1px solid #fff;
-    height: 40px;
 }
 
 .commands button {
     text-transform: capitalize;
+}
+
+.commands button:not(:last-of-type) {
+    border-right: none;
+    margin-bottom: 1px;
 }
