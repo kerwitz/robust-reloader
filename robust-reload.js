@@ -225,7 +225,9 @@
                     interval_left = interval_length - 1000,
                     canvas = document.createElement('canvas'),
                     image = document.createElement('img'),
-                    context = canvas.getContext('2d');
+                    context = canvas.getContext('2d'),
+                    circle = Math.PI * 2,
+                    quarter = Math.PI / 2;
                 _timers[tab_id] = window.setTimeout(
                     function() {
                         // We are abstracting the onUpdated event of the chrome tabs because there
@@ -245,7 +247,7 @@
                         chrome.tabs.reload(tab_id);
                     },
                     interval_length
-               );
+                );
                 image.src = 'rr_19.png';
                 if (_page_action_countdown_intervals[tab_id]) {
                     // There was an interval still running, kill that one first.
@@ -257,19 +259,25 @@
                         window.clearInterval(_page_action_countdown_intervals[tab_id]);
                         return;
                     } else if (
-                        interval_left < 10000 &&
                         _options.config.show_page_action &&
                         _options.config.show_page_action_countdown
-                   ) {
-                        // Under 10 seconds left until the next reload and we are allowed to show a
-                        // countdown on the omnibar icon. Go ahead and use canvas to draw it.
+                    ) {
                         context.clearRect (0, 0, canvas.width, canvas.height)
                         context.drawImage(image, 0, 0);
-                        context.fillStyle = "rgba(0,0,0,1)";
-                        context.fillRect(11, 11, 8, 8);
-                        context.fillStyle = "white";
-                        context.font = "9px monospace";
-                        context.fillText(interval_left / 1000, 13, 18);
+                        context.beginPath();
+                        context.arc(9, 9, 8.5, -(quarter), ((circle) * ((interval_length - interval_left)/interval_length)) - quarter, false);
+                        context.strokeStyle = '#0083F5';
+                        context.lineWidth = 1;
+                        context.stroke();
+                        if (interval_left < 10000) {
+                            // Under 10 seconds left until the next reload and we are allowed to show a
+                            // countdown on the omnibar icon. Go ahead and use canvas to draw it.
+                            context.fillStyle = "rgba(0,0,0,1)";
+                            context.fillRect(11, 11, 8, 8);
+                            context.fillStyle = "white";
+                            context.font = "9px monospace";
+                            context.fillText(interval_left / 1000, 13, 18);
+                        }
                         // We can set the icon of our page action to canvas by using getImageData.
                         chrome.pageAction.setIcon({
                             imageData: context.getImageData(0, 0, 19, 19),
