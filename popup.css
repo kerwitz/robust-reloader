@@ -42,13 +42,17 @@ input {
 }
 
 button {
-    background-image: linear-gradient(to bottom, #fff, #dedede);
+    background: linear-gradient(to bottom, #fff, #dedede);
     border: 1px solid #BABABA;
     float: left;
     cursor: pointer;
     width: 25%;
     line-height: 25px;
     box-shadow: inset 0 -1px 0 #fff, inset 1px 0 0 #fff, inset -1px 0 0 #fff;
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #fff, #C1D6CF);
 }
 
 .interval-list {
