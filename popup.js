@@ -85,7 +85,7 @@ chrome.tabs.query(
                 interval_list.innerHTML = list_items;
             }
             if (typeof request.interval_length !== 'undefined' && typeof request.interval_left !== 'undefined') {
-                info.textContent = chrome.i18n.getMessage( 'page_action_title_interval_countdown' )
+                info.innerHTML = chrome.i18n.getMessage( 'page_action_title_interval_countdown' )
                     .replace( '{interval}', request.interval_length / 1000 )
                     .replace( '{leftover}', request.interval_left / 1000 );
                 progress_bar.style.width = ( 100 - ( request.interval_left / ( request.interval_length / 100 ) ) ) + '%';
