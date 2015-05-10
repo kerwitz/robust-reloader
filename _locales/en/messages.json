@@ -72,7 +72,7 @@
         "description":  "The title of the page action if the reloading has been paused."
     },
     "page_action_title_interval_countdown": {
-        "message":      "Current interval: {interval} seconds, next reload in: {leftover} seconds.",
+        "message":      "Current interval: {interval} seconds.<br>Next reload in: {leftover} seconds.",
         "description":  "The title of the page action if the countdown is enabled. Use {interval} and {leftover}."
     },
     "page_action_interval_list": {
