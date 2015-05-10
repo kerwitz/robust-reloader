@@ -8,12 +8,12 @@
         "description":  "The description of the extension as seen on the extension panel."
     },
     "suggestion": {
-        "message":      "Enter a coma separated list of intervals (<match>\"20s,1m,1m20s,1h,10\"</match>), <match>\"about\"</match> or <match>\"config\"</match> .",
+        "message":      "Enter a coma separated list of intervals (<match>\"20,1:00,1:20,1:00:00,10\"</match>), <match>\"about\"</match> or <match>\"config\"</match>.",
         "description":  "The suggestion shown under the omnibar when the user starts typing a command. Use <match> tag to highlight strings."
     },
-    "command_stop": {
-        "message":      "stop",
-        "description":  "The stop command."
+    "command_clear": {
+        "message":      "clear",
+        "description":  "The clear command."
     },
     "command_pause": {
         "message":      "pause",
@@ -31,9 +31,9 @@
         "message":      "about",
         "description":  "The about command."
     },
-    "notification_stopped": {
-        "message":      "Reloading was stopped.",
-        "description":  "The notification that appears after a \"stop\" command."
+    "notification_cleared": {
+        "message":      "All intervals have been cleared.",
+        "description":  "The notification that appears after a \"clear\" command."
     },
     "notification_paused": {
         "message":      "Reloading was paused.",
@@ -67,8 +67,20 @@
         "message":      "Current interval is {interval} seconds.",
         "description":  "The title of the page action if the countdown is disabled. Use {interval}."
     },
+    "page_action_title_paused": {
+        "message":      "Reloading is currently paused.",
+        "description":  "The title of the page action if the reloading has been paused."
+    },
     "page_action_title_interval_countdown": {
         "message":      "Current interval: {interval} seconds, next reload in: {leftover} seconds.",
         "description":  "The title of the page action if the countdown is enabled. Use {interval} and {leftover}."
+    },
+    "page_action_interval_list": {
+        "message":      "Intervals set",
+        "description":  "The string describing the list of intervals displayed on the popup."
+    },
+    "page_action_input_placeholder": {
+        "message":      "Enter your commands here",
+        "description":  "The placeholder string within the input on the popup."
     }
 }

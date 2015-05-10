@@ -17,5 +17,13 @@
     "options_ui": {
         "page": "options.html",
         "chrome_style": true
-    }
+    },
+    "icons": {
+        "16": "rr_16.png",
+        "48": "rr_48.png",
+        "128": "rr_128.png"
+    },
+    "web_accessible_resources": [
+        "rr_48.png"
+    ]
 }
