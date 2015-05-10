@@ -82,7 +82,7 @@ chrome.tabs.query(
                     list_items += request.intervals[i];
                     if (i < request.intervals.length-1) list_items += ', ';
                 }
-                interval_list.innerHTML = list_items;
+                interval_list.innerHTML = chrome.i18n.getMessage( 'page_action_interval_list' ) + ':<br>' + list_items;
             }
             if (typeof request.interval_length !== 'undefined' && typeof request.interval_left !== 'undefined') {
                 info.innerHTML = chrome.i18n.getMessage( 'page_action_title_interval_countdown' )
