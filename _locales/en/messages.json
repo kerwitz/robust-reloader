@@ -59,6 +59,10 @@
         "message":      "Show icon in the omnibar when the plugin is active",
         "description":  "The description of the option field \"show_page_action\"."
     },
+    "options_show_page_action_progress": {
+        "message":      "Show progress of current interval on the ommibar icon",
+        "description":  "The description of the option field \"show_page_action_progress\"."
+    },
     "options_show_page_action_countdown": {
         "message":      "Show countdown in the ommibar icon 10 seconds before a reload",
         "description":  "The description of the option field \"show_page_action_countdown\"."

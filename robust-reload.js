@@ -16,6 +16,8 @@
                 notification_timeout: 2,
                 // Display the page action if the extension is active?
                 show_page_action: true,
+                // Display a progressbar of the current interval on the omnibar icon?
+                show_page_action_progress: true,
                 // Display a countdown within the page action icon?
                 show_page_action_countdown: true
             },
@@ -258,18 +260,23 @@
                         // Our interval has been cancelled, clear the timeout.
                         window.clearInterval(_page_action_countdown_intervals[tab_id]);
                         return;
-                    } else if (
-                        _options.config.show_page_action &&
-                        _options.config.show_page_action_countdown
-                    ) {
+                    } else if (_options.config.show_page_action) {
                         context.clearRect (0, 0, canvas.width, canvas.height)
                         context.drawImage(image, 0, 0);
-                        context.beginPath();
-                        context.arc(9, 9, 8.5, -(quarter), ((circle) * ((interval_length - interval_left)/interval_length)) - quarter, false);
-                        context.strokeStyle = '#0083F5';
-                        context.lineWidth = 1;
-                        context.stroke();
-                        if (interval_left < 10000) {
+                        if (_options.config.show_page_action_progress) {
+                            // We are allowed to render a progress indicator on the omnibar icon.
+                            context.beginPath();
+                            context.arc(
+                                9, 9, 8.5,
+                                - quarter,
+                                (circle * ((interval_length - interval_left) / interval_length)) - quarter,
+                                false
+                            );
+                            context.strokeStyle = '#0083F5';
+                            context.lineWidth = 1;
+                            context.stroke();
+                        }
+                        if (_options.config.show_page_action_countdown && interval_left < 10000) {
                             // Under 10 seconds left until the next reload and we are allowed to show a
                             // countdown on the omnibar icon. Go ahead and use canvas to draw it.
                             context.fillStyle = "rgba(0,0,0,1)";
