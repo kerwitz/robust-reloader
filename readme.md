@@ -19,3 +19,6 @@ An experimental chrome extension that lets you reload the current tab from the o
     - "about"
 
 Click on the rr-icon on the omnibar to reveal a progress bar and see when the page is going to be reloaded again.
+
+## License
+[MIT](https://tldrlegal.com/license/mit-license)
