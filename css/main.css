@@ -86,8 +86,8 @@ section.screen .titlebar li:nth-child(2) { background-color: #ffbe06; left: 32px
 section.screen .titlebar li:nth-child(3) { background-color: #16cc37; left: 54px; }
 
 section.screen .pane {
-    background: #fff;
-    height: 300px;
+    background: #fff url(../img/screencapture.gif) center center no-repeat;
+    height: 272px;
 }
 
 section.content {}
