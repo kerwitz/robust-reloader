@@ -1,0 +1,90 @@
+{
+    "extension_name": {
+        "message":      "Robust reloader",
+        "description":  "The name of the extension (robust reload)."
+    },
+    "extension_description": {
+        "message":      "Eine experimentelle Erweiterung die es ermöglicht, den aktuellen Tab von der Omnibar durch einfache Befehle neu zuladen. Drücken Sie einfach \"r\" + tab.",
+        "description":  "The description of the extension as seen on the extension panel."
+    },
+    "suggestion": {
+        "message":      "Geben Sie eine durch Komma getrennte Liste von Intervallen ein (<match>\"20,1:00,1:20,1:00:00,10\"</match>), <match>\"about\"</match> oder <match>\"config\"</match>.",
+        "description":  "The suggestion shown under the omnibar when the user starts typing a command. Use <match> tag to highlight strings."
+    },
+    "command_clear": {
+        "message":      "clear",
+        "description":  "The clear command."
+    },
+    "command_pause": {
+        "message":      "pause",
+        "description":  "The pause command."
+    },
+    "command_start": {
+        "message":      "start",
+        "description":  "The start or unpause command."
+    },
+    "command_config": {
+        "message":      "config",
+        "description":  "The config command."
+    },
+    "command_about": {
+        "message":      "about",
+        "description":  "The about command."
+    },
+    "notification_cleared": {
+        "message":      "Alle Intervalle wurden entfernt.",
+        "description":  "The notification that appears after a \"clear\" command."
+    },
+    "notification_paused": {
+        "message":      "Das Neuladen wurde pausiert.",
+        "description":  "The notification that appears after a \"pause\" command."
+    },
+    "notification_started_again": {
+        "message":      "Das Neuladen wurde erneut gestartet.",
+        "description":  "The notification that appears after a \"start\" command."
+    },
+    "notification_started": {
+        "message":      "Das Neuladen wurde gestartet.",
+        "description":  "The notification that appears after new intervals have been entered."
+    },
+    "options_enable_notifications": {
+        "message":      "Benachrichtigungen aktivieren",
+        "description":  "The description of the option field \"enable_notifications\"."
+    },
+    "options_notification_timeout": {
+        "message":      "Anzeigedauer von Benachrichtigungen (Sekunden)",
+        "description":  "The description of the option field \"notification_timeout\"."
+    },
+    "options_show_page_action": {
+        "message":      "Zeige einen Icon in der Omnibar wenn das Plugin aktiv ist",
+        "description":  "The description of the option field \"show_page_action\"."
+    },
+    "options_show_page_action_progress": {
+        "message":      "Zeige den Fortschritt des aktuellen Intervalls in der Omnibar",
+        "description":  "The description of the option field \"show_page_action_progress\"."
+    },
+    "options_show_page_action_countdown": {
+        "message":      "Zeige in den letzten zehn Sekunden einen Countdown in der Omnibar",
+        "description":  "The description of the option field \"show_page_action_countdown\"."
+    },
+    "page_action_title_interval": {
+        "message":      "Aktueller Intervall beträgt {interval} Sekunden.",
+        "description":  "The title of the page action if the countdown is disabled. Use {interval}."
+    },
+    "page_action_title_paused": {
+        "message":      "Das Neuladen ist gerade pausiert.",
+        "description":  "The title of the page action if the reloading has been paused."
+    },
+    "page_action_title_interval_countdown": {
+        "message":      "Aktueller Intervall: {interval} Sekunden.<br>Nächstes Neuladen in: {leftover} Sekunden.",
+        "description":  "The title of the page action if the countdown is enabled. Use {interval} and {leftover}."
+    },
+    "page_action_interval_list": {
+        "message":      "Gesetzte Intervalle:",
+        "description":  "The string describing the list of intervals displayed on the popup."
+    },
+    "page_action_input_placeholder": {
+        "message":      "Geben Sie hier Ihre Kommandos ein",
+        "description":  "The placeholder string within the input on the popup."
+    }
+}
