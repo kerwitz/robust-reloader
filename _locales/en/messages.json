@@ -4,7 +4,7 @@
         "description":  "The name of the extension (robust reload)."
     },
     "extension_description": {
-        "message":      "A chrome reload extension that accepts multiple intervals without adding any icons to the UI, it all works through the omnibox. Just hit \"r\" + tab.",
+        "message":      "An experimental chrome extension that lets you reload the current tab from the omnibar using simple commands. Just hit \"r\" + tab.",
         "description":  "The description of the extension as seen on the extension panel."
     },
     "suggestion": {
