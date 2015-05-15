@@ -1,3 +1,7 @@
+/**
+ * The javascript file enhancing the options dialog of this extension.
+ *
+ */
 var element,
     input_elements = document.getElementsByClassName('config'),
     notification_options = document.getElementsByClassName('notification-options')[0],
