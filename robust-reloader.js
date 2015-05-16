@@ -1,3 +1,10 @@
+/**
+ * Robust-reloader is a chrome extension that lets you reload the current tab using simple commands
+ * from the omnibar.
+ *
+ * @author Marco Kerwitz <marco@kerwitz.com>
+ * @see http://kerwitz.github.io/robust-reloader
+ */
 (function(name, definition) {
     this.kerwitz || (this.kerwitz = {});
     this.kerwitz[name] = definition();
