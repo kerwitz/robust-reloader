@@ -218,11 +218,12 @@
              * @return {array}  A list of the fetched timeouts.
              */
             parseInput: function(input) {
-                // Normalize the separators.
+                // Normalize the separators and replace all additional separators with the default one.
                 input = input.replace(
                     new RegExp(_options.additional_separators.join('|')),
                     _options.default_separator
-               );
+                );
+                // Split the input string by the default separator.
                 input = input.split(_options.default_separator);
                 return input;
             },
@@ -240,6 +241,7 @@
                     context = canvas.getContext('2d'),
                     circle = Math.PI * 2,
                     quarter = Math.PI / 2;
+                // Create the new reload interval for tab_id.
                 _timers[tab_id] = window.setTimeout(
                     function() {
                         // We are abstracting the onUpdated event of the chrome tabs because there
