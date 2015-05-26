@@ -125,9 +125,11 @@
                     if (!request.event) return false;
                     switch(request.event) {
                         case 'store_config':
+                            // Store a single config value (used by the options popup).
                             _self.storeConfig(request.config);
                             break;
                         case 'get_config':
+                            // Load the value of a single config entry.
                             callback(_self.getConfig(request.config));
                             break;
                         case 'handle_command':
@@ -201,6 +203,7 @@
                         // After the commands have been run update the pause state of this tab.
                         chrome.runtime.sendMessage({
                             event: 'update_pause_state',
+                            // If there is no current timer defined for this tab the tab must be paused.
                             pause_state: (!_timers[tab_id]),
                             tab_id: tab_id
                         });
