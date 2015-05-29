@@ -15,21 +15,41 @@
         "message":      "clear",
         "description":  "The clear command."
     },
+    "command_clear_description": {
+        "message":      "Clears all intervals and stops the reloading.",
+        "description":  "The description of the clear command."
+    },
     "command_pause": {
         "message":      "pause",
         "description":  "The pause command."
+    },
+    "command_pause_description": {
+        "message":      "Cancels the current interval and pauses the reloading.",
+        "description":  "The description of the pause command."
     },
     "command_start": {
         "message":      "start",
         "description":  "The start or unpause command."
     },
+    "command_start_description": {
+        "message":      "Restarts the reloading.",
+        "description":  "The description of the start or unpause command."
+    },
     "command_config": {
         "message":      "config",
         "description":  "The config command."
     },
+    "command_config_description": {
+        "message":      "Opens the optiof of the extension.",
+        "description":  "The description of the config command."
+    },
     "command_about": {
         "message":      "about",
         "description":  "The about command."
+    },
+    "command_about_description": {
+        "message":      "Opens the website of the extension.",
+        "description":  "The description of the about command."
     },
     "notification_cleared": {
         "message":      "All intervals have been cleared.",
@@ -46,6 +66,10 @@
     "notification_started": {
         "message":      "Reloading was started.",
         "description":  "The notification that appears after new intervals have been entered."
+    },
+    "options_available_commands": {
+        "message":      "Available commands",
+        "description":  "The title of the table of available commands."
     },
     "options_enable_notifications": {
         "message":      "Enable notifications",
