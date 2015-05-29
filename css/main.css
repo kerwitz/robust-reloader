@@ -136,6 +136,11 @@ p.hint {
     text-align: justify;
 }
 
+p.note {
+    font-size: .7em;
+    text-align: justify;
+}
+
 section.download {}
 
 section.download .action {
