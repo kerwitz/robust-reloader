@@ -235,12 +235,7 @@
              */
             enqueueReload: function(tab_id) {
                 var interval_length = _self.parseMicroseconds(_reload_intervals[tab_id][0]),
-                    interval_left = interval_length - 1000,
-                    canvas = document.createElement('canvas'),
-                    image = document.createElement('img'),
-                    context = canvas.getContext('2d'),
-                    circle = Math.PI * 2,
-                    quarter = Math.PI / 2;
+                    interval_left = interval_length - 1000;
                 // Create the new reload interval for tab_id.
                 _timers[tab_id] = window.setTimeout(
                     function() {
@@ -262,6 +257,25 @@
                     },
                     interval_length
                 );
+                updatePageAction(tab_id, interval_left, interval_length);
+            },
+            /**
+             * Update the page action icon and the content of its popup with the current interval.
+             *
+             * This method will take care of the countdown and the progress bar atop of the page
+             * action icon as well as the content of popup.html.
+             *
+             * @author Marco Kerwitz <marco@kerwitz.com>
+             * @param  {number} tab_id
+             * @param  {number} interval_left
+             * @param  {number} interval_length
+             */
+            updatePageAction: function(tab_id, interval_left, interval_length) {
+                var canvas = document.createElement('canvas'),
+                    image = document.createElement('img'),
+                    context = canvas.getContext('2d'),
+                    circle = Math.PI * 2,
+                    quarter = Math.PI / 2;
                 image.src = 'rr_19.png';
                 if (_page_action_countdown_intervals[tab_id]) {
                     // There was an interval still running, kill that one first.
@@ -303,6 +317,7 @@
                             tabId: tab_id
                         });
                     }
+                    // Send the new interval information over to the popup.
                     chrome.runtime.sendMessage({
                         event: 'update_popup_info',
                         tab_id: tab_id,
