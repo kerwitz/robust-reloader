@@ -15,21 +15,41 @@
         "message":      "clear",
         "description":  "The clear command."
     },
+    "command_clear_description": {
+        "message":      "Entfernt alle Intervalle und beendet das Neuladen.",
+        "description":  "The description of the clear command."
+    },
     "command_pause": {
         "message":      "pause",
         "description":  "The pause command."
+    },
+    "command_pause_description": {
+        "message":      "Bricht den aktuellen Intervall ab und pausiert das Neuladen.",
+        "description":  "The description of the pause command."
     },
     "command_start": {
         "message":      "start",
         "description":  "The start or unpause command."
     },
+    "command_start_description": {
+        "message":      "Startet das Neuladen wieder.",
+        "description":  "The description of the start or unpause command."
+    },
     "command_config": {
         "message":      "config",
         "description":  "The config command."
     },
+    "command_config_description": {
+        "message":      "Öffnet die Konfiguration der Erweiterung.",
+        "description":  "The description of the config command."
+    },
     "command_about": {
         "message":      "about",
         "description":  "The about command."
+    },
+    "command_about_description": {
+        "message":      "Öffnet die Webseite der Erweiterung.",
+        "description":  "The description of the about command."
     },
     "notification_cleared": {
         "message":      "Alle Intervalle wurden entfernt.",
@@ -46,6 +66,10 @@
     "notification_started": {
         "message":      "Das Neuladen wurde gestartet.",
         "description":  "The notification that appears after new intervals have been entered."
+    },
+    "options_available_commands": {
+        "message":      "Verfügbare Kommandos",
+        "description":  "The title of the table of available commands."
     },
     "options_enable_notifications": {
         "message":      "Benachrichtigungen aktivieren",
