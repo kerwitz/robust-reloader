@@ -106,6 +106,7 @@
                 chrome.omnibox.onInputStarted.addListener(_self.pauseReloading);
                 chrome.omnibox.onInputCancelled.addListener(_self.unpauseReloading);
                 chrome.omnibox.setDefaultSuggestion({description: _options.suggestion});
+                // Abstract the onUpdated event for the tabs we are listening.
                 chrome.tabs.onUpdated.addListener(function(tab_id, change) {
                     if (change.status === 'complete' && _tab_updated_callbacks[tab_id]) {
                         _tab_updated_callbacks[tab_id](tab_id);
@@ -187,9 +188,7 @@
                                 });
                                 break;
                             case _options.commands.about:
-                                chrome.tabs.create({
-                                    url: 'http://kerwitz.github.io/robust-reload'
-                                });
+                                chrome.tabs.create({url: 'http://kerwitz.github.io/robust-reload'});
                                 break;
                             default:
                                 // Assuming basic input of intervals.
@@ -201,9 +200,11 @@
                                 break;
                         }
                         // After the commands have been run update the pause state of this tab.
+                        // This message will be used within popup.js to update the content of the
+                        // popup accordingly.
                         chrome.runtime.sendMessage({
                             event: 'update_pause_state',
-                            // If there is no current timer defined for this tab the tab must be paused.
+                            // If there is no current timer defined for this tab it has been paused.
                             pause_state: (!_timers[tab_id]),
                             tab_id: tab_id
                         });
@@ -213,7 +214,7 @@
             /**
              * Fetch reload timeouts from the input a user entered into the omnibox.
              *
-             * @author Marco Kerwitz
+             * @author Marco Kerwitz <marco@kerwitz.com>
              * @param  {string} input
              * @return {array}  A list of the fetched timeouts.
              */
@@ -241,15 +242,16 @@
                     function() {
                         // We are abstracting the onUpdated event of the chrome tabs because there
                         // is no way to remove callbacks hooked in on the original event.
+                        // Have a look at the initiate method above.
                         _tab_updated_callbacks[tab_id] = function(tab_id) {
                             // Make sure that our pageAction persists.
                             _self.showPageAction(tab_id);
                             // We are waiting for the tab to finish loading before we start a new
                             // interval. Otherwise we might introduce nasty infinite loops if the
-                            // page takes its time to load.
-                            // Move the first interval to the end of the array so we can slowly
-                            // cycle through it without knowing (and storing) the current interval.
-                            // This will enable us to pause and unpause at any given moment.
+                            // page takes its time to load. Move the first interval to the end of
+                            // the array so we can cycle through it without knowing (and storing)
+                            // the current interval. This will enable us to pause and unpause at any
+                            // given moment.
                             _reload_intervals[tab_id].push(_reload_intervals[tab_id].shift());
                             _self.enqueueReload(tab_id);
                         }
@@ -287,6 +289,7 @@
                         window.clearInterval(_page_action_countdown_intervals[tab_id]);
                         return;
                     } else if (_options.config.show_page_action) {
+                        // We have a running interval and are allowed to show the page action.
                         context.clearRect (0, 0, canvas.width, canvas.height)
                         context.drawImage(image, 0, 0);
                         if (_options.config.show_page_action_progress) {
@@ -303,8 +306,8 @@
                             context.stroke();
                         }
                         if (_options.config.show_page_action_countdown && interval_left < 10000) {
-                            // Under 10 seconds left until the next reload and we are allowed to show a
-                            // countdown on the omnibar icon. Go ahead and use canvas to draw it.
+                            // Under 10 seconds left until the next reload and we are allowed to show
+                            // a countdown on the omnibar icon. Go ahead and use canvas to draw it.
                             context.fillStyle = "rgba(0,0,0,1)";
                             context.fillRect(11, 11, 8, 8);
                             context.fillStyle = "white";
