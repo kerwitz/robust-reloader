@@ -181,12 +181,20 @@
                                 chrome.tabs.create({url: 'http://kerwitz.github.io/robust-reload'});
                                 break;
                             default:
-                                // Assuming basic input of intervals.
-                                // Store the input and associate it with the current tab.
-                                _reload_intervals[tab_id] = _self.parseInput(input);
-                                _self.enqueueReload(tab_id);
-                                _self.notify(chrome.i18n.getMessage('notification_started'));
-                                _self.showPageAction(tab_id);
+                                var regex = new RegExp('^[0-9' + _options.config.interval_separator + ':]*$');
+                                if (input.match(regex)) {
+                                    // Assuming basic input of intervals.
+                                    // Store the input and associate it with the current tab.
+                                    _reload_intervals[tab_id] = _self.parseInput(input);
+                                    _self.enqueueReload(tab_id);
+                                    _self.notify(chrome.i18n.getMessage('notification_started'));
+                                    _self.showPageAction(tab_id);
+                                } else {
+                                    var response = confirm(chrome.i18n.getMessage('alert_unrecognized_input'));
+                                    if (response) {
+                                        _self.handleInput(_options.commands.config);
+                                    }
+                                }
                                 break;
                         }
                         // After the commands have been run update the pause state of this tab.
