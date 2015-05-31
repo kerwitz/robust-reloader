@@ -71,6 +71,10 @@
         "message":      "Available commands",
         "description":  "The title of the table of available commands."
     },
+    "options_interval_separator": {
+        "message":      "Interval separator",
+        "description":  "The description of the options field \"interval_separator\"."
+    },
     "options_enable_notifications": {
         "message":      "Enable notifications",
         "description":  "The description of the option field \"enable_notifications\"."

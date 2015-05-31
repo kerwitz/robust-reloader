@@ -71,6 +71,10 @@
         "message":      "Verfügbare Kommandos",
         "description":  "The title of the table of available commands."
     },
+    "options_interval_separator": {
+        "message":      "Trennzeichen für Intervalle",
+        "description":  "The description of the options field \"interval_separator\"."
+    },
     "options_enable_notifications": {
         "message":      "Benachrichtigungen aktivieren",
         "description":  "The description of the option field \"enable_notifications\"."
