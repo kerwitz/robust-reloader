@@ -244,7 +244,7 @@
                     },
                     interval_length
                 );
-                updatePageAction(tab_id, interval_left, interval_length);
+                _self.updatePageAction(tab_id, interval_left, interval_length);
             },
             /**
              * Update the page action icon and the content of its popup with the current interval.
