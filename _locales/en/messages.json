@@ -51,6 +51,10 @@
         "message":      "Opens the website of the extension.",
         "description":  "The description of the about command."
     },
+    "alert_unrecognized_input": {
+        "message":      "This command could not be processed. Would you like to see a list of possible commands?",
+        "description":  "The message that informs the user of unrecognized input and suggests a look at the possible commands."
+    },
     "notification_cleared": {
         "message":      "All intervals have been cleared.",
         "description":  "The notification that appears after a \"clear\" command."
