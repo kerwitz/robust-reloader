@@ -26,7 +26,9 @@
                 // Display a progressbar of the current interval on the omnibar icon?
                 show_page_action_progress: true,
                 // Display a countdown within the page action icon?
-                show_page_action_countdown: true
+                show_page_action_countdown: true,
+                // The separator used between multiple intervals.
+                interval_separator: ','
             },
             /**
              * The suggestion we show while the user types in a command.
@@ -46,19 +48,7 @@
                 start:  chrome.i18n.getMessage('command_start'),
                 config: chrome.i18n.getMessage('command_config'),
                 about:  chrome.i18n.getMessage('command_about')
-            },
-            /**
-             * This is the default string used to separate the intervals entered by the user.
-             *
-             * @var object
-             */
-            default_separator: ',',
-            /**
-             * Any other possible separators go here.
-             *
-             * @var object
-             */
-            additional_separators: [';']
+            }
         },
         /**
          * This variable will hold all our timeout identifiers ordered by their tab_id.
@@ -219,13 +209,8 @@
              * @return {array}  A list of the fetched timeouts.
              */
             parseInput: function(input) {
-                // Normalize the separators and replace all additional separators with the default one.
-                input = input.replace(
-                    new RegExp(_options.additional_separators.join('|')),
-                    _options.default_separator
-                );
                 // Split the input string by the default separator.
-                input = input.split(_options.default_separator);
+                input = input.split(_options.config.interval_separator);
                 return input;
             },
             /**
