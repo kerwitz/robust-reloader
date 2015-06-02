@@ -1,6 +1,11 @@
 /**
- * The javascript file enhancing the options dialog of this extension.
+ * Robust-reloader is a chrome extension that lets you reload the current tab using simple commands
+ * from the omnibar.
  *
+ * This is the javascript of the options panel.
+ *
+ * @author Marco Kerwitz <marco@kerwitz.com>
+ * @see http://kerwitz.github.io/robust-reloader
  */
 var element,
     input_elements = document.getElementsByClassName('config'),

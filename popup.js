@@ -1,3 +1,13 @@
+/**
+ * Robust-reloader is a chrome extension that lets you reload the current tab using simple commands
+ * from the omnibar.
+ *
+ * This is the javascript of the popup of the page action icon on the ombibar.
+ *
+ * @author Marco Kerwitz <marco@kerwitz.com>
+ * @see http://kerwitz.github.io/robust-reloader
+ */
+ // Make sure we're always running this in context of the currently active tab.
 chrome.tabs.query(
     { active: true, currentWindow: true },
     function( results ) {
