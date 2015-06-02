@@ -78,46 +78,47 @@ chrome.tabs.query(
                 chrome.runtime.sendMessage({event: 'get_popup_info', tab_id: current_tab.id}, updateInfo);
             }
         });
-        /**
-         * Updates the popup with the information provided by the request.
-         * You may provide only request.intervals or only request.interval_length and request.interval_left
-         * to update these parts independently from each other.
-         *
-         * @param {object} request
-         */
-        function updateInfo( request ) {
-            var list_items = '';
-            if (typeof request.intervals !== 'undefined') {
-                for (var i = 0; i < request.intervals.length; i++) {
-                    list_items += request.intervals[i];
-                    if (i < request.intervals.length-1) list_items += ', ';
-                }
-                interval_list.innerHTML = chrome.i18n.getMessage( 'page_action_interval_list' ) + ':<br>' + list_items;
-            }
-            if (typeof request.interval_length !== 'undefined' && typeof request.interval_left !== 'undefined') {
-                info.innerHTML = chrome.i18n.getMessage( 'page_action_title_interval_countdown' )
-                    .replace( '{interval}', request.interval_length / 1000 )
-                    .replace( '{leftover}', request.interval_left / 1000 );
-                progress_bar.style.width = ( 100 - ( request.interval_left / ( request.interval_length / 100 ) ) ) + '%';
-            }
-        }
-        /**
-         * Update the popup with the current tabs pause state.
-         *
-         * @param {boolean} pause_state
-         */
-        function updatePauseState(pause_state) {
-            if (!pause_state) {
-                // Realoading is active.
-                start_button.style.display = 'none';
-                pause_button.style.display = 'block';
-            } else {
-                // Reloading is paused.
-                start_button.style.display = 'block';
-                pause_button.style.display = 'none';
-                info.textContent = chrome.i18n.getMessage('page_action_title_paused');
-                progress_bar.style.width = '0%';
-            }
-        }
     }
 );
+
+/**
+ * Updates the popup with the information provided by the request.
+ * You may provide only request.intervals or only request.interval_length and request.interval_left
+ * to update these parts independently from each other.
+ *
+ * @param {object} request
+ */
+function updateInfo( request ) {
+    var list_items = '';
+    if (typeof request.intervals !== 'undefined') {
+        for (var i = 0; i < request.intervals.length; i++) {
+            list_items += request.intervals[i];
+            if (i < request.intervals.length-1) list_items += ', ';
+        }
+        interval_list.innerHTML = chrome.i18n.getMessage( 'page_action_interval_list' ) + ':<br>' + list_items;
+    }
+    if (typeof request.interval_length !== 'undefined' && typeof request.interval_left !== 'undefined') {
+        info.innerHTML = chrome.i18n.getMessage( 'page_action_title_interval_countdown' )
+            .replace( '{interval}', request.interval_length / 1000 )
+            .replace( '{leftover}', request.interval_left / 1000 );
+        progress_bar.style.width = ( 100 - ( request.interval_left / ( request.interval_length / 100 ) ) ) + '%';
+    }
+}
+/**
+ * Update the popup with the current tabs pause state.
+ *
+ * @param {boolean} pause_state
+ */
+function updatePauseState(pause_state) {
+    if (!pause_state) {
+        // Realoading is active.
+        start_button.style.display = 'none';
+        pause_button.style.display = 'block';
+    } else {
+        // Reloading is paused.
+        start_button.style.display = 'block';
+        pause_button.style.display = 'none';
+        info.textContent = chrome.i18n.getMessage('page_action_title_paused');
+        progress_bar.style.width = '0%';
+    }
+}
