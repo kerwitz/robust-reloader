@@ -10,10 +10,10 @@
  // Make sure we're always running this in context of the currently active tab.
 chrome.tabs.query(
     { active: true, currentWindow: true },
-    function( results ) {
-        var info = document.getElementsByClassName( 'info' )[ 0 ],
-            progress_bar = document.getElementById( 'progressBar' ),
-            interval_list = document.getElementsByClassName( 'interval-list' )[ 0 ],
+    function(results) {
+        var info = document.getElementsByClassName('info')[ 0 ],
+            progress_bar = document.getElementById('progressBar'),
+            interval_list = document.getElementsByClassName('interval-list')[ 0 ],
             control_buttons = document.getElementsByClassName('control'),
             localize_elements = document.getElementsByClassName('localize'),
             start_button = document.getElementsByClassName('start')[0],
@@ -26,17 +26,17 @@ chrome.tabs.query(
         chrome.runtime.sendMessage({event: 'get_pause_state', tab_id: current_tab.id}, updatePauseState);
         chrome.runtime.sendMessage({event: 'get_popup_info', tab_id: current_tab.id}, updateInfo);
         // Set up our messaging callbacks.
-        chrome.runtime.onMessage.addListener( function( request, sender, callback ) {
+        chrome.runtime.onMessage.addListener(function(request, sender, callback) {
             if (!request.event || request.tab_id !== current_tab.id) return false;
-            switch( request.event ) {
+            switch(request.event) {
                 case 'update_popup_info':
-                    updateInfo( request );
+                    updateInfo(request);
                     break;
                 case 'update_pause_state':
                     updatePauseState(request.pause_state);
                     break;
             }
-        } );
+        });
         // Hook in on the control buttons.
         for (var i = 0; i < control_buttons.length; i++) {
             element = control_buttons[i];
@@ -45,7 +45,7 @@ chrome.tabs.query(
                     event: 'handle_command',
                     command: e.target.textContent
                 });
-                if (e.target.textContent === chrome.i18n.getMessage( 'command_clear' )) {
+                if (e.target.textContent === chrome.i18n.getMessage('command_clear')) {
                     // The user clicked on the stop button. This will hide the page action so hide the
                     // popup too.
                     window.close();
@@ -70,7 +70,7 @@ chrome.tabs.query(
                     event: 'handle_command',
                     command: e.target.value
                 });
-                if (e.target.value === chrome.i18n.getMessage( 'command_clear' )) {
+                if (e.target.value === chrome.i18n.getMessage('command_clear')) {
                     window.close();
                 }
                 e.target.value = '';
@@ -88,20 +88,20 @@ chrome.tabs.query(
  *
  * @param {object} request
  */
-function updateInfo( request ) {
+function updateInfo(request) {
     var list_items = '';
     if (typeof request.intervals !== 'undefined') {
         for (var i = 0; i < request.intervals.length; i++) {
             list_items += request.intervals[i];
             if (i < request.intervals.length-1) list_items += ', ';
         }
-        interval_list.innerHTML = chrome.i18n.getMessage( 'page_action_interval_list' ) + ':<br>' + list_items;
+        interval_list.innerHTML = chrome.i18n.getMessage('page_action_interval_list') + ':<br>' + list_items;
     }
     if (typeof request.interval_length !== 'undefined' && typeof request.interval_left !== 'undefined') {
-        info.innerHTML = chrome.i18n.getMessage( 'page_action_title_interval_countdown' )
-            .replace( '{interval}', request.interval_length / 1000 )
-            .replace( '{leftover}', request.interval_left / 1000 );
-        progress_bar.style.width = ( 100 - ( request.interval_left / ( request.interval_length / 100 ) ) ) + '%';
+        info.innerHTML = chrome.i18n.getMessage('page_action_title_interval_countdown')
+            .replace('{interval}', request.interval_length / 1000)
+            .replace('{leftover}', request.interval_left / 1000);
+        progress_bar.style.width = (100 - (request.interval_left / (request.interval_length / 100))) + '%';
     }
 }
 /**
