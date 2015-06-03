@@ -90,6 +90,7 @@ chrome.tabs.query(
  */
 function updateInfo(request) {
     var list_items = '';
+    // Cycle through intervals if any and create a list of them.
     if (typeof request.intervals !== 'undefined') {
         for (var i = 0; i < request.intervals.length; i++) {
             list_items += request.intervals[i];
@@ -97,6 +98,7 @@ function updateInfo(request) {
         }
         interval_list.innerHTML = chrome.i18n.getMessage('page_action_interval_list') + ':<br>' + list_items;
     }
+    // If any interval is currently active update the progressbar and the countdown.
     if (typeof request.interval_length !== 'undefined' && typeof request.interval_left !== 'undefined') {
         info.innerHTML = chrome.i18n.getMessage('page_action_title_interval_countdown')
             .replace('{interval}', request.interval_length / 1000)
