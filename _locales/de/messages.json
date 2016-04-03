@@ -4,7 +4,7 @@
         "description":  "The name of the extension (robust reload)."
     },
     "extension_description": {
-        "message":      "Eine experimentelle Erweiterung die es ermöglicht, den aktuellen Tab von der Omnibar durch einfache Befehle neu zuladen. Drücken Sie einfach \"r\" + tab.",
+        "message":      "Eine experimentelle Erweiterung, die es ermöglicht, den aktuellen Tab von der Omnibar durch einfache Befehle neu zu laden. Drücken Sie einfach \"r\" + tab.",
         "description":  "The description of the extension as seen on the extension panel."
     },
     "suggestion": {
@@ -88,7 +88,7 @@
         "description":  "The description of the option field \"notification_timeout\"."
     },
     "options_show_page_action": {
-        "message":      "Zeige einen Icon in der Omnibar wenn das Plugin aktiv ist",
+        "message":      "Zeige einen Icon in der Omnibar, wenn das Plugin aktiv ist",
         "description":  "The description of the option field \"show_page_action\"."
     },
     "options_show_page_action_progress": {
