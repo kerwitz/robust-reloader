@@ -156,6 +156,10 @@ section.download .action {
     text-decoration: none;
 }
 
+.contributor-list {
+    text-align: center;
+}
+
 a.contributor {
     display: block;
     width: 80px;
