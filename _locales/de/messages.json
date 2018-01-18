@@ -11,6 +11,14 @@
         "message":      "Geben Sie eine durch Komma getrennte Liste von Intervallen ein (<match>\"20,1:00,1:20,1:00:00,10\"</match>), <match>\"about\"</match> oder <match>\"config\"</match>.",
         "description":  "The suggestion shown under the omnibar when the user starts typing a command. Use <match> tag to highlight strings."
     },
+    "command_all_prefix": {
+        "message":      "all",
+        "description":  "The prefix to control all open tabs."
+    },
+    "command_all_prefix_description": {
+        "message":      "Nachfolgende Kommandos für alle Tabs ausführen.",
+        "description":  "A description for the \"all\" prefix."
+    },
     "command_clear": {
         "message":      "clear",
         "description":  "The clear command."

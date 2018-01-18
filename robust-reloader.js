@@ -45,11 +45,12 @@
              * @var object
              */
             commands: {
-                clear:  chrome.i18n.getMessage('command_clear'),
-                pause:  chrome.i18n.getMessage('command_pause'),
-                start:  chrome.i18n.getMessage('command_start'),
+                clear: chrome.i18n.getMessage('command_clear'),
+                pause: chrome.i18n.getMessage('command_pause'),
+                start: chrome.i18n.getMessage('command_start'),
                 config: chrome.i18n.getMessage('command_config'),
-                about:  chrome.i18n.getMessage('command_about')
+                about: chrome.i18n.getMessage('command_about'),
+                allPrefix: chrome.i18n.getMessage('command_all_prefix')
             }
         },
         /**
@@ -144,39 +145,54 @@
              * @param  {string} input
              */
             handleInput: function(input) {
+                let queryFilter = {};
+
                 input = input.trim().toLowerCase();
+
+                if (input.indexOf(_options.commands.allPrefix) === 0) {
+                    input = input.replace(_options.commands.allPrefix, '').trim();
+                } else {
+                    // Limit this command to the current tab.
+                    queryFilter = {
+                        active: true,
+                        currentWindow: true
+                    };
+                }
+
                 chrome.tabs.query(
-                    {active: true, currentWindow: true},
+                    queryFilter,
                     function(results) {
-                        // We just did a search for all active tabs in the current window. results
-                        // contains "all" of them. Emphasis because there really should only be one
-                        // at all times.
-                        var tab_id = results[0].id;
                         // Switch through our commands or parse intervals from the input if it does
                         // not match any of them.
-                        switch(input) {
+                        switch (input) {
                             case _options.commands.clear:
-                                // Stop the current interval and clear the ones set for this tab.
-                                _reload_intervals[tab_id] = [];
-                                _self.clearCurrentInterval(tab_id);
+                                results.map(tab => {
+                                    // Stop the current interval and clear the ones set for this tab.
+                                    _reload_intervals[tab.id] = [];
+                                    _self.clearCurrentInterval(tab.id);
+                                    chrome.pageAction.hide(tab.id);
+                                });
                                 _self.notify(chrome.i18n.getMessage('notification_cleared'));
-                                chrome.pageAction.hide(tab_id);
                                 break;
                             case _options.commands.pause:
-                                // Clear the current interval but keep the ones set.
-                                _self.clearCurrentInterval(tab_id);
+                                results.map(tab => {
+                                    // Clear the current interval but keep the ones set.
+                                    _self.clearCurrentInterval(tab.id);
+                                    chrome.pageAction.setIcon({path: 'rr_19.png', tabId: tab.id});
+                                });
                                 _self.notify(chrome.i18n.getMessage('notification_paused'));
-                                chrome.pageAction.setIcon({path: 'rr_19.png', tabId: tab_id});
                                 break;
                             case _options.commands.start:
-                                // Start reloading again after a pause command.
-                                _self.enqueueReload(tab_id);
+                                results.map(tab => {
+                                    // Start reloading again after a pause command.
+                                    _self.enqueueReload(tab.id);
+                                });
                                 _self.notify(chrome.i18n.getMessage('notification_started_again'));
                                 break;
                             case _options.commands.config:
                                 chrome.tabs.create({
                                     url: 'chrome://extensions?options='
-                                        + chrome.i18n.getMessage('@@extension_id')
+                                    + chrome.i18n.getMessage('@@extension_id')
                                 });
                                 break;
                             case _options.commands.about:
@@ -187,10 +203,12 @@
                                 if (input.match(regex)) {
                                     // Assuming basic input of intervals.
                                     // Store the input and associate it with the current tab.
-                                    _reload_intervals[tab_id] = _self.parseInput(input);
-                                    _self.enqueueReload(tab_id);
+                                    results.map(tab => {
+                                        _reload_intervals[tab.id] = _self.parseInput(input);
+                                        _self.enqueueReload(tab.id);
+                                        _self.showPageAction(tab.id);
+                                    });
                                     _self.notify(chrome.i18n.getMessage('notification_started'));
-                                    _self.showPageAction(tab_id);
                                 } else {
                                     var response = confirm(chrome.i18n.getMessage('alert_unrecognized_input'));
                                     if (response) {
@@ -199,14 +217,17 @@
                                 }
                                 break;
                         }
-                        // After the commands have been run update the pause state of this tab.
+
+                        // After the commands have been run update the pause state of each tab.
                         // This message will be used within popup.js to update the content of the
                         // popup accordingly.
-                        chrome.runtime.sendMessage({
-                            event: 'update_pause_state',
-                            // If there is no current timer defined for this tab it has been paused.
-                            pause_state: (!_timers[tab_id]),
-                            tab_id: tab_id
+                        results.map(tab => {
+                            chrome.runtime.sendMessage({
+                                event: 'update_pause_state',
+                                // If there is no current timer defined for this tab it has been paused.
+                                pause_state: (!_timers[tab.id]),
+                                tab_id: tab.id
+                            });
                         });
                     }
                );
@@ -249,7 +270,7 @@
                             // given moment.
                             _reload_intervals[tab_id].push(_reload_intervals[tab_id].shift());
                             _self.enqueueReload(tab_id);
-                        }
+                        };
                         chrome.tabs.reload(tab_id);
                     },
                     interval_length

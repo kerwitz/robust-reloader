@@ -17,6 +17,8 @@ An experimental chrome extension that lets you reload the current tab from the o
     - "clear"
     - "config"
     - "about"
+    
+Prefix your command with "all" to control the behaviour for all currently opened tabs: `all 20` or `all clear`.
 
 Click on the rr-icon on the omnibar to reveal a progress bar and see when the page is going to be reloaded again.
 
